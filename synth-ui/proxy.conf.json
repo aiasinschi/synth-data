@@ -1,0 +1,9 @@
+{
+  "/rest": {
+    "target": "http://localhost:9100/synth",
+    "secure": false,
+    "pathRewrite": {
+      "^/synth/rest": "/synth/rest/"
+    }
+  }
+}
