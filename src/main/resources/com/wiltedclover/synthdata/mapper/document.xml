@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN' 'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+
+<mapper namespace='com.wiltedclover.synthdata.mapper.DocumentMapper'>
+
+	<resultMap type="com.wiltedclover.synthdata.model.Document" id="documentMap">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="shortName" column="shortName"/>
+		<result property="content" column="content"/>
+		<result property="access" column="access"/>
+		<result property="code" column="code"/>
+		<result property="pages" column="pages"/>
+	</resultMap>
+
+	<delete id="deleteDocument">
+		DELETE FROM document WHERE id = #{docId}
+	</delete>
+
+	<select id="getAllDocuments" resultMap="documentMap">
+		SELECT * FROM document
+	</select>
+
+	<insert id="addDocument">
+		<selectKey keyColumn="id" keyProperty="id" resultType="long" order="BEFORE">
+			select nextval('seq_document')
+		</selectKey>
+		INSERT INTO document (id, name, "shortName", content, access, code, pages) VALUES
+			(#{id}, #{name}, #{shortName}, #{content}, #{access}, #{code}, #{pages})
+	</insert>
+	<insert id="addAllDocuments">
+		<foreach collection="list" item="doc" separator=";">
+			INSERT INTO document (id, name, "shortName", content, access, code, pages) VALUES
+			(nextval('seq_document'), #{doc.name}, #{doc.shortName}, #{doc.content}, #{doc.access}, #{doc.code}, #{doc.pages})
+		</foreach>
+		; COMMIT
+	</insert>
+</mapper>
