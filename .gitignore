@@ -29,3 +29,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/synth-ui/package-lock.json
+/synth-ui/browserslist
