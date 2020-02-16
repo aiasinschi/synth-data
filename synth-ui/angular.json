@@ -137,5 +137,8 @@
       }
     }
   },
-  "defaultProject": "synth-ui"
+  "defaultProject": "synth-ui",
+  "cli": {
+    "analytics": "ecef3c25-f01b-4999-bc54-90c7a7d45a18"
+  }
 }
