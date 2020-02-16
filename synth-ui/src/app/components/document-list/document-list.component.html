@@ -1,0 +1,9 @@
+<div>
+  <label for="mockCount">Add mock documents</label>
+  <input id="mockCount" [(ngModel)]="count" />
+  <button id="addMock" (click)="addMockDocuments()">Add</button>
+</div>
+Document List:
+<div *ngFor="let doc of documents">
+  {{doc.name}}
+</div>
