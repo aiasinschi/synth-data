@@ -1,9 +1,30 @@
 <div>
-  <label for="mockCount">Add mock documents</label>
-  <input id="mockCount" [(ngModel)]="count" />
-  <button id="addMock" (click)="addMockDocuments()">Add</button>
+  <label for="mockCount" class="basic-spacing">Add mock documents</label>
+  <input id="mockCount" [(ngModel)]="count" class="basic-spacing"/>
+  <button id="addMock" (click)="addMockDocuments()" class="basic-spacing app-button">Add</button>
 </div>
 Document List:
-<div *ngFor="let doc of documents">
-  {{doc.name}}
+<div class="document-list">
+  <div class="document-header-row">
+    <div class="document-info tbl-header">ID</div>
+    <div class="document-info tbl-header">Short Name</div>
+    <div class="document-info tbl-header">Name</div>
+    <div class="document-info tbl-header">Code</div>
+    <div class="document-info tbl-header document-content">Content</div>
+    <div class="document-info tbl-header">Access</div>
+    <div class="document-info tbl-header">Pages</div>
+  </div>
+  <div *ngFor="let doc of documents" class="document-row" (click)="showDocumentDetails(doc)">
+    <div class="document-info">{{doc.id}}</div>
+    <div class="document-info">{{doc.shortName}}</div>
+    <div class="document-info">{{doc.name}}</div>
+    <div class="document-info">{{doc.code}}</div>
+    <div class="document-info document-content" title="{{doc.content}}">{{doc.content}}</div>
+    <div class="document-info">{{doc.access}}</div>
+    <div class="document-info">{{doc.pages}}</div>
+  </div>
+</div>
+
+<div *ngIf="showDetailsDialog">
+  <app-document [document]="selectedDocument" (closeDocDetailsEvent)="showDetailsDialog = $event"></app-document>
 </div>

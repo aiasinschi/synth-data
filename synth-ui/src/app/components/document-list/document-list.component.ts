@@ -12,22 +12,21 @@ export class DocumentListComponent implements OnInit {
 
   count = 0;
   documents: SynthDocument[] = [];
+  showDetailsDialog = false;
+  selectedDocument: SynthDocument;
 
   constructor(private documentService: DocumentService) { }
 
   ngOnInit() {
-    this.documentService.getAllDocuments().subscribe(
-      result => this.documents = result
-    );
+    this.reloadDocuments();
   }
 
   addMockDocuments() {
-    this.documentService.addMockDocuments(this.count)
-      .pipe(
-        finalize(this.reloadDocuments)
-      )
-      .subscribe(
-      count => console.log(`Added ${count} mock documents.`)
+    this.documentService.addMockDocuments(this.count).subscribe(
+      count => {
+        console.log(`Added ${count} mock documents.`);
+        this.reloadDocuments();
+      }
     );
   }
 
@@ -35,5 +34,10 @@ export class DocumentListComponent implements OnInit {
     this.documentService.getAllDocuments().subscribe(
       result => this.documents = result
     );
+  }
+
+  showDocumentDetails(doc: SynthDocument) {
+    this.showDetailsDialog = true;
+    this.selectedDocument = doc;
   }
 }

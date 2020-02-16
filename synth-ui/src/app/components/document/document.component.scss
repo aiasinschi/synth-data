@@ -1,0 +1,52 @@
+.doc-dialog {
+  //padding: 10px;
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 500px;
+  border: 2px solid black;
+  background: #EEFFFF;
+  z-index: 100;
+}
+
+.doc-id {
+  color: blue;
+  font-weight: bolder;
+  display: inline-block;
+}
+
+.doc-code{
+  color: red;
+  font-weight: bolder;
+  display: inline-block;
+}
+
+.doc-text {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.doc-content {
+  margin-left: 10px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.doc-label {
+  font-weight: bolder;
+  display: inline-block;
+  margin: 10px;
+}
+
+.app-close-button {
+  font-weight: bolder;
+  display: inline-block;
+  margin: 10px;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
+.app-close-button:hover {
+  color: red;
+}

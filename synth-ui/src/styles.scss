@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body, input, button {
+  //font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Dosis', sans-serif;
+  font-size: 18px;
+}
+
+.basic-spacing {
+  margin: 5px;
+  padding: 2px;
+}
+
+.tbl-header {
+  font-weight: bolder;
+}

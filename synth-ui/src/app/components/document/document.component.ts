@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {SynthDocument} from "../../model/synth-document";
 
 @Component({
   selector: 'app-document',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocumentComponent implements OnInit {
 
+  @Input()
+  document: SynthDocument;
+  @Output()
+  closeDocDetailsEvent = new EventEmitter<boolean>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  closeDocumentDetails() {
+    this.closeDocDetailsEvent.emit(false);
+  }
 }
