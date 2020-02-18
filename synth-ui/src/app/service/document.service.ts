@@ -19,4 +19,8 @@ export class DocumentService {
   addMockDocuments(count: number): Observable<number> {
     return this._http.get<number>(`${this.BASE_URL}/document/generate?count=${count}`);
   }
+
+  deleteDocument(id: number): Observable<number> {
+    return this._http.post<number>(`${this.BASE_URL}/document/delete`, id);
+  }
 }

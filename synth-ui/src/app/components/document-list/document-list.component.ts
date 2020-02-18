@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SynthDocument} from "../../model/synth-document";
 import {DocumentService} from "../../service/document.service";
-import {finalize} from "rxjs/operators";
+import {MatDialog} from '@angular/material/dialog';
+import {DocumentDialogComponent} from '../document-dialog/document-dialog.component';
+import {AppConstants} from '../../model/app-constants';
 
 @Component({
   selector: 'app-document-list',
@@ -12,10 +14,10 @@ export class DocumentListComponent implements OnInit {
 
   count = 0;
   documents: SynthDocument[] = [];
-  showDetailsDialog = false;
+  displayedColumns: string[] = ['id', 'shortName', 'name', 'code', 'content', 'access', 'pages'];
   selectedDocument: SynthDocument;
 
-  constructor(private documentService: DocumentService) { }
+  constructor(private documentService: DocumentService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.reloadDocuments();
@@ -36,8 +38,28 @@ export class DocumentListComponent implements OnInit {
     );
   }
 
+  deleteDocument(doc: SynthDocument) {
+    this.documentService.deleteDocument(doc.id).subscribe(
+      res => {
+        console.log(res);
+        this.reloadDocuments();
+      }
+    );
+  }
+
   showDocumentDetails(doc: SynthDocument) {
-    this.showDetailsDialog = true;
     this.selectedDocument = doc;
+    const dialogRef = this.dialog.open(DocumentDialogComponent, {
+      width: '600px',
+      data: {document: doc}
+    });
+
+    dialogRef.afterClosed().subscribe(
+      result => {
+        if (AppConstants.DIALOG_RESULTS.DELETE === result) {
+          this.deleteDocument(this.selectedDocument);
+        }
+      }
+    );
   }
 }

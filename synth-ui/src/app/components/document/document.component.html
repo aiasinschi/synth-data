@@ -1,36 +1,31 @@
-<div class="doc-dialog">
-  <div style="background: black; color: white;">
-    <div class="doc-label">Document details</div>
-    <div class="app-close-button" (click)="closeDocumentDetails()">X</div>
+<div>
+  <div>
+    <div class="doc-label">ID:</div>
+    <div class="doc-id">{{document.id}}</div>
   </div>
   <div>
-    <div>
-      <div class="doc-label">ID:</div>
-      <div class="doc-id">{{document.id}}</div>
-    </div>
-    <div>
-      <div class="doc-label">Short Name:</div>
-      <div class="doc-text">{{document.shortName}}</div>
-    </div>
-    <div>
-      <div class="doc-label">Full Name:</div>
-      <div class="doc-text">{{document.name}}</div>
-    </div>
-    <div>
-      <div class="doc-label">Code:</div>
-      <div class="doc-code">{{document.code}}</div>
-    </div>
-    <div>
-      <div class="doc-label">Content:</div>
-      <div class="doc-content">{{document.content}}</div>
-    </div>
-    <div>
-      <div class="doc-label">Access:</div>
-      <div class="doc-code">{{document.access}}</div>
-    </div>
-    <div>
-      <div class="doc-label">Pages:</div>
-      <div class="doc-id">{{document.pages}}</div>
-    </div>
+    <div class="doc-label">Short Name:</div>
+    <div class="doc-text">{{document.shortName}}</div>
+  </div>
+  <div>
+    <div class="doc-label">Full Name:</div>
+    <div class="doc-text">{{document.name}}</div>
+  </div>
+  <div>
+    <div class="doc-label">Code:</div>
+    <div class="doc-code">{{document.code}}</div>
+  </div>
+  <div>
+    <div class="doc-label">Content:</div>
+    <div class="doc-content">{{document.content}}</div>
+  </div>
+  <div>
+    <div class="doc-label">Access:</div>
+    <div class="doc-code">{{document.access}}</div>
+  </div>
+  <div>
+    <div class="doc-label">Pages:</div>
+    <div class="doc-id">{{document.pages}}</div>
   </div>
 </div>
+

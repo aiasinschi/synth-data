@@ -1,0 +1,12 @@
+
+  <div mat-dialog-title class="doc-label">Document details</div>
+  <div mat-dialog-content>
+    <mat-card>
+  <app-document [document]="document"></app-document>
+    </mat-card>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-flat-button (click)="onCloseClick()" color="primary">Close</button>
+    <button mat-flat-button (click)="onDeleteClick($event)" color="warn">Delete</button>
+  </div>
+

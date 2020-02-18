@@ -7,38 +7,7 @@
   cursor: pointer;
 }
 
-.document-row {
-  display: table-row;
-  cursor: pointer;
-}
-
-.document-row:hover {
-  background: #EEFFFF;
-}
-
-.document-info {
-  display: table-cell;
-  margin: 5px;
-  padding: 2px;
-}
-
-.document-content {
-  max-width: 400px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.app-button {
-  background: #44AAEE;
-  color: white;
-  border-color: #3399DD;
+.mat-header-cell {
+  font-size: 20px;
   font-weight: bold;
-  min-width: 90px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.app-button:hover {
-  background: #55BBFF;
 }
