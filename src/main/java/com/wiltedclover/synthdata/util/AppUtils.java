@@ -1,6 +1,34 @@
 package com.wiltedclover.synthdata.util;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URL;
+import java.util.*;
+
 public class AppUtils {
+
+	private static List<String> wordList;
+
+	static {
+		wordList = new ArrayList<>();
+		String fileName = "static/english.txt";
+		ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+		URL resource = classLoader.getResource(fileName);
+		File file = null;
+		if (resource != null) {
+			file = new File(resource.getFile());
+		}
+		if ((file != null) && (file.exists())) {
+			try {
+				Scanner scanner = new Scanner(file);
+				while (scanner.hasNextLine()) {
+					wordList.add(scanner.nextLine());
+				}
+			} catch (FileNotFoundException ex) {
+				System.err.println(ex.getMessage());
+			}
+		}
+	}
 
 	private static final String[] LOREM_IPSUM = {
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque justo libero, sollicitudin a auctor vitae, dignissim at massa. Donec non turpis neque. In quis pharetra odio. Etiam nulla sem, finibus scelerisque cursus convallis, sodales vitae est. Morbi fringilla nisl lorem, sed placerat dolor sagittis malesuada. Nulla aliquam purus quis urna blandit vulputate quis sed elit. Curabitur sodales ante convallis, feugiat enim eget, varius mauris. Suspendisse quis ornare velit. Etiam condimentum sem quis pellentesque viverra. Cras eu venenatis risus, id sodales elit. Vivamus ut magna leo. Vestibulum mattis urna vitae ex ultricies lobortis. Vivamus sit amet sem et mauris rutrum sollicitudin et tempus eros. Pellentesque vitae porta sapien, non tristique turpis. Phasellus non sollicitudin erat.",
@@ -12,5 +40,31 @@ public class AppUtils {
 
 	public static String getRandomLoremIpsum() {
 		return LOREM_IPSUM[(int) Math.round(Math.random()  * 100000000) % LOREM_IPSUM.length];
+	}
+
+	public static String getRandomTitle() {
+		int count = random(4) + 1;
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < count; i++) {
+			sb.append(getRandomWord());
+			sb.append(" ");
+		}
+		return toSentenceCase(sb.toString());
+	}
+
+	public static String getRandomWord() {
+		if (wordList.size() == 0) { // should not happen
+			return "Dummy_title";
+		}
+		int index = random(wordList.size());
+		return wordList.get(index);
+	}
+
+	private static String toSentenceCase(String toString) {
+		return String.format("%s%s", toString.substring(0, 1).toUpperCase(), toString.substring(1));
+	}
+
+	public static int random(int max) {
+		return (int)Math.round((Math.random() * 200000000) % max);
 	}
 }
