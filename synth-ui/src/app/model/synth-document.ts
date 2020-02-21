@@ -13,4 +13,6 @@ export interface SynthDocument {
   code: string;
 
   pages: number;
+
+  selected?: boolean;
 }

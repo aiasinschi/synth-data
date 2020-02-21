@@ -25,6 +25,10 @@ public class DocumentService {
 		documentMapper.addAllDocuments(docs);
 	}
 
+	public void deleteBulkDocuments(List<Long> selectedIds) {
+		documentMapper.deleteBulkDocuments(selectedIds);
+	}
+
 	public void deleteDocument(Long docId) {
 		documentMapper.deleteDocument(docId);
 	}

@@ -4,6 +4,8 @@ import {DocumentService} from "../../service/document.service";
 import {MatDialog} from '@angular/material/dialog';
 import {DocumentDialogComponent} from '../document-dialog/document-dialog.component';
 import {AppConstants} from '../../model/app-constants';
+import {AddDocumentsDialogComponent} from '../add-documents-dialog/add-documents-dialog.component';
+import {getSortHeaderNotContainedWithinSortError} from '@angular/material/sort/sort-errors';
 
 @Component({
   selector: 'app-document-list',
@@ -14,7 +16,7 @@ export class DocumentListComponent implements OnInit {
 
   count = 0;
   documents: SynthDocument[] = [];
-  displayedColumns: string[] = ['id', 'shortName', 'name', 'code', 'content', 'access', 'pages'];
+  displayedColumns: string[] = ['id', 'selected', 'shortName', 'name', 'code', 'content', 'access', 'pages'];
   selectedDocument: SynthDocument;
 
   constructor(private documentService: DocumentService, public dialog: MatDialog) { }
@@ -47,6 +49,17 @@ export class DocumentListComponent implements OnInit {
     );
   }
 
+  deleteSelectedDocuments() {
+    let selectedIds = this.getSelectedDocumentsIds();
+    this.documentService.deleteDocuments(selectedIds).subscribe(
+      res => {
+        console.log(res);
+        this.reloadDocuments();
+      }
+
+    )
+  }
+
   showDocumentDetails(doc: SynthDocument) {
     this.selectedDocument = doc;
     const dialogRef = this.dialog.open(DocumentDialogComponent, {
@@ -61,5 +74,26 @@ export class DocumentListComponent implements OnInit {
         }
       }
     );
+  }
+
+  showAddMockDocsDialog() {
+    const dialogRef = this.dialog.open(AddDocumentsDialogComponent, {
+      width: '300px'
+    });
+
+    dialogRef.afterClosed().subscribe(
+      count => this.reloadDocuments()
+    )
+  }
+
+  private getSelectedDocumentsIds(): number[] {
+    let list: number[] = [];
+    for (const doc of this.documents) {
+      if (doc.selected) {
+        list.push(doc.id);
+      }
+    }
+    console.log(list);
+    return list;
   }
 }

@@ -17,6 +17,10 @@
 		DELETE FROM document WHERE id = #{docId}
 	</delete>
 
+	<delete id="deleteBulkDocuments">
+		DELETE FROM document WHERE id IN (<foreach collection="list" item="docid" separator=", ">#{docid}</foreach>)
+	</delete>
+
 	<select id="getAllDocuments" resultMap="documentMap">
 		SELECT * FROM document ORDER BY id
 	</select>

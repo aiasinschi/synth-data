@@ -15,13 +15,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { DocumentDialogComponent } from './components/document-dialog/document-dialog.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import { AddDocumentsDialogComponent } from './components/add-documents-dialog/add-documents-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocumentListComponent,
     DocumentComponent,
-    DocumentDialogComponent
+    DocumentDialogComponent,
+    AddDocumentsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,10 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatButtonModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

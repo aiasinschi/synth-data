@@ -23,4 +23,8 @@ export class DocumentService {
   deleteDocument(id: number): Observable<number> {
     return this._http.post<number>(`${this.BASE_URL}/document/delete`, id);
   }
+
+  deleteDocuments(selectedIds: number[]) {
+    return this._http.post<number>(`${this.BASE_URL}/document/deleteBulk`, selectedIds);
+  }
 }

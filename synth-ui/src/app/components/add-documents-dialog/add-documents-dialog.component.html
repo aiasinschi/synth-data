@@ -1,0 +1,16 @@
+<div mat-dialog-title class="doc-label">Document details</div>
+<div mat-dialog-content>
+  <mat-card>
+    <form>
+      <mat-form-field>
+        <mat-label class="basic-spacing">Add mock documents</mat-label>
+        <input matInput id="mockCount" [(ngModel)]="count" name="count" class="basic-spacing" placeholder="10"/>
+      </mat-form-field>
+      <!--<button mat-flat-button id="addMock" (click)="addMockDocuments()" color="primary">Add</button>-->
+    </form>
+  </mat-card>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button (click)="onCloseClick()" color="warn">Close</button>
+  <button mat-flat-button (click)="addMockDocuments()" color="primary">Add</button>
+</div>

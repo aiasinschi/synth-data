@@ -37,6 +37,11 @@ public class DocumentController {
 		documentService.deleteDocument(docId);
 	}
 
+	@PostMapping("/document/deleteBulk")
+	public void deleteBulkDOcuments(@RequestBody List<Long> selectedIds) {
+		documentService.deleteBulkDocuments(selectedIds);
+	}
+
 	@GetMapping("/document/generate")
 	public int generateDocuments(@RequestParam("count") int count) {
 		List<Document> docs = new ArrayList<>();

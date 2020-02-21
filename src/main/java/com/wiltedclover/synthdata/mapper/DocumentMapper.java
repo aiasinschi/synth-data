@@ -18,4 +18,6 @@ public interface DocumentMapper {
 	void addAllDocuments(List<Document> docs);
 
 	void deleteDocument(Long docId);
+
+	void deleteBulkDocuments(List<Long> selectedIds);
 }
